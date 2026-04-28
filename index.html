@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rapid Crisis Response</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: black;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 400px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .red { background: #e53935; }
+    .green { background: #43a047; }
+    .blue { background: #1e88e5; }
+
+    input {
+      padding: 10px;
+      width: 90%;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" id="app"></div>
+
+  <script>
+    let screen = 1;
+
+    function render() {
+      const app = document.getElementById("app");
+
+      if (screen === 1) {
+        app.innerHTML = `
+          <h1 style="color:red;">Rapid Crisis Response</h1>
+          <p>Saving lives faster...</p>
+          <button class="red" onclick="next(2)">Start</button>
+        `;
+      }
+
+      else if (screen === 2) {
+        app.innerHTML = `
+          <h2>Login</h2>
+          <input placeholder="Username"><br>
+          <input type="password" placeholder="Password"><br>
+          <button class="red" onclick="next(3)">Login</button>
+        `;
+      }
+
+      else if (screen === 3) {
+        app.innerHTML = `
+          <h2>Hello User</h2>
+          <button class="red" onclick="next(4)">EMERGENCY</button>
+        `;
+      }
+
+      else if (screen === 4) {
+        app.innerHTML = `<h2>Sending Alert...</h2>`;
+        setTimeout(() => next(5), 1500);
+      }
+
+      else if (screen === 5) {
+        app.innerHTML = `
+          <h2>Live Location</h2>
+          <p>Sharing your location...</p>
+        `;
+        setTimeout(() => next(6), 1500);
+      }
+
+      else if (screen === 6) {
+        app.innerHTML = `
+          <h2 style="color:lightgreen;">Alert Sent!</h2>
+          <p>Responders notified</p>
+        `;
+        setTimeout(() => next(7), 1500);
+      }
+
+      else if (screen === 7) {
+        app.innerHTML = `<h2>Responders on the way 🚑</h2>`;
+        setTimeout(() => next(8), 1500);
+      }
+
+      else if (screen === 8) {
+        app.innerHTML = `<h2>Tracking responders...</h2>`;
+        setTimeout(() => next(9), 2000);
+      }
+
+      else if (screen === 9) {
+        app.innerHTML = `
+          <h2 style="color:lightgreen;">Help Arrived!</h2>
+          <button class="blue" onclick="next(10)">Continue</button>
+        `;
+      }
+
+      else if (screen === 10) {
+        app.innerHTML = `
+          <h2>Are you safe?</h2>
+          <button class="green" onclick="next(11)">Yes, I'm safe</button><br>
+          <button class="red">I need more help</button>
+        `;
+      }
+
+      else if (screen === 11) {
+        app.innerHTML = `<h2>Thank You ❤️</h2>`;
+      }
+    }
+
+    function next(n) {
+      screen = n;
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
